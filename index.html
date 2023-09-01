@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sorting Algorithm Visualizer</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
     <div class="main-ctn">
-        <section class="header"></section>
+      <section class="header"></section>
 
-        <section class="button-bar"></section>
+      <section class="button-bar"></section>
 
+      <section class="bar-ctn">
+        <div class="bar">
+          <!-- In order to create a cuboid, we need 
+                  top, bottom, left, right, front and back -->
+          <div class="side top"></div>
+          <div class="side bottom"></div>
+          <div class="side right">
+            <div class="color-bar right-color-bar"></div>
+          </div>
+          <div class="side left">
+            <div class="color-bar left-color-bar"></div>
+          </div>
+          <div class="side front">
+            <div class="color-bar front-color-bar"></div>
+          </div>
+          <div class="side back">
+            <div class="color-bar back-color-bar"></div>
+          </div>
+        </div>
+      </section>
 
-        <section class="bar-ctn">
-            <div class="bar">
-                <!-- In order to create a cuboid, we need 
-                top, bottom, left, right, front and back -->
-                <div class="side top"></div>
-                <div class="side bottom"></div>
-                <div class="side right">
-                    <div class="color-bar right-color-bar"></div>
-                </div>
-                <div class="side left">
-                    <div class="color-bar left-color-bar"></div>
-                </div>
-                <div class="side front">
-                    <div class="color-bar front-color-bar"></div>
-                </div>
-                <div class="side back">
-                    <div class="color-bar back-color-bar"></div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="range-slider"></section>
+      <section class="range-slider">
+        <div class="array-size">
+          <span>Array Size</span>
+          <input
+            type="range"
+            min="3"
+            max="13"
+            value="1"
+            class="slider"
+            id="myRange"
+          />
+        </div>
+
+        <div class="animation-speed"></div>
+      </section>
     </div>
-</body>
+  </body>
 </html>
