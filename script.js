@@ -16,15 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Range slider for array size
     const slider = document.querySelector('.slider');
 
-
     // Elements related to the bar container
     const barContainer = document.querySelector('.bar-ctn');
 
-    // Global slider value 
+    // Global value 
     let sliderValue = 3;
+    let arr = [];
 
     // When the project loads, three bars must be displayed by default 
-    const arr = randomNumberGenerator(3);
+    arr = randomNumberGenerator(sliderValue);
 
     arr.forEach((value, i) => {
         const bar = document.createElement('div');
@@ -51,77 +51,79 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Handling the input event 
-    slider.addEventListener(
-        'input', () => {
+    slider.addEventListener('input', () => {
+        // Clear the inner HTML contents of barContainer
+        barContainer.innerHTML = '';
 
-            // clearing the inner html contents of barContainer
-            barContainer.innerHTML = '';
+        sliderValue = slider.value;
+        arr = randomNumberGenerator(sliderValue);
 
-            sliderValue = slider.value;
-            const arr = randomNumberGenerator(sliderValue);
+        arr.forEach((value, i) => {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
 
-            arr.forEach((value, i) => {
-                const bar = document.createElement('div');
-                bar.className = 'bar';
+            const sides = ['top', 'bottom', 'right', 'left', 'front', 'back'];
+            sides.forEach((sideName) => {
+                const side = document.createElement('div');
+                side.className = `side ${sideName}`;
 
-                const sides = ['top', 'bottom', 'right', 'left', 'front', 'back'];
-                sides.forEach((sideName) => {
-                    const side = document.createElement('div');
-                    side.className = `side ${sideName}`;
+                if (['back', 'right', 'front', 'left'].includes(sideName)) {
+                    const colorBar = document.createElement('div');
+                    colorBar.className = 'color-bar';
 
-                    if (['back', 'right', 'front', 'left'].includes(sideName)) {
-                        const colorBar = document.createElement('div');
-                        colorBar.className = 'color-bar';
+                    // Setting the height of the color bar
+                    colorBar.style.height = `${value}vh`;
+                    colorBar.style.transform = `translateY(${70 - value}vh)`;
 
-                        // Setting the height of the color bar
-                        colorBar.style.height = `${value}vh`;
-                        colorBar.style.transform = `translateY(${70 - value}vh)`;
-
-                        side.appendChild(colorBar);
-                    }
-                    bar.appendChild(side);
-                });
-                barContainer.appendChild(bar);
+                    side.appendChild(colorBar);
+                }
+                bar.appendChild(side);
             });
-        }
-    );
+            barContainer.appendChild(bar);
+        });
+    });
 
     // Elements related to buttons 
     const generateNewArrayBtn = document.querySelector('.gen-btn')
 
-
-    // Elements related to the bars
-    const bars = document.querySelectorAll('.bar');
-    const sides = document.querySelectorAll('.side');
-    console.log(bars);
-    console.log(sides);
-
-
     // Handling the generate new array button 
-    generateNewArrayBtn.addEventListener(
-        'click', () => {
-            generateNewArrayBtn.classList.add('clickable');
+    generateNewArrayBtn.addEventListener('click', () => {
 
-            sliderValue = slider.value;
-            const arr = randomNumberGenerator(sliderValue);
+        generateNewArrayBtn.classList.add('clickable');
 
-            let index = 0;
+        // Clear the existing bars
+        barContainer.innerHTML = '';
 
-            bars.forEach((bar) => {
-                sides.forEach((side) => {
-                    if (['back', 'right', 'front', 'left'].includes(side.classList)) {
-                        let value = arr[index++];
-                        console.log(value);
-                        const colorBar = side.querySelector('.color-bar');
-                        colorBar.style.height = `${value}vh`;
-                        colorBar.style.transform = `translateY(${70 - value}vh)`;
-                    }
-                });
+
+        arr = randomNumberGenerator(sliderValue);
+
+        arr.forEach((value, i) => {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+
+            const sides = ['top', 'bottom', 'right', 'left', 'front', 'back'];
+            sides.forEach((sideName) => {
+                const side = document.createElement('div');
+                side.className = `side ${sideName}`;
+
+                if (['back', 'right', 'front', 'left'].includes(sideName)) {
+                    const colorBar = document.createElement('div');
+                    colorBar.className = 'color-bar';
+
+                    // Setting the height of the color bar
+                    colorBar.style.height = `${value}vh`;
+                    colorBar.style.transform = `translateY(${70 - value}vh)`;
+
+                    side.appendChild(colorBar);
+                }
+                bar.appendChild(side);
             });
+            barContainer.appendChild(bar);
+        });
 
-            setTimeout(() => {
-                generateNewArrayBtn.classList.remove('clickable');
-            }, 100);
-        }
-    );
-}); 
+
+        setTimeout(() => {
+            generateNewArrayBtn.classList.remove('clickable');
+        }, 100);
+    });
+});
