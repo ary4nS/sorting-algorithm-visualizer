@@ -5,6 +5,13 @@
   padding: 0;
 }
 
+:root {
+  --border-radius: 99999px;
+  --border-gap: 2px;
+  --gradient-pos-x: 50%;
+  --gradient-pos-y: 50%;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   overflow: hidden;
@@ -24,15 +31,15 @@ body {
   );
 }
 
-.header {
+/* .header {
   height: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .button-bar {
-  height: 10%;
+  height: 18%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +104,6 @@ body {
 
 .color-bar {
   width: 100%;
-  /* transform: translateY(30vh); */
   transition: height 0.3s ease;
 }
 
@@ -105,6 +111,7 @@ body {
 .color-bar {
   background-color: rgba(225, 0, 120, 0.5);
   box-shadow: 5px 5px 50px 5px rgba(225, 0, 120, 0.2);
+  transition: height 0.3s ease;
 }
 
 /* Slider  */
@@ -142,4 +149,112 @@ body {
   font-size: 2vh;
   font-weight: 500;
   color: #eee;
+}
+
+/* Button container  */
+.button-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-bar > .btn-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2vw;
+}
+
+.button {
+  position: relative;
+  border: none;
+  border-radius: var(--border-radius);
+  background: gray;
+  padding: var(--border-gap);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  transition: all 0.3s;
+}
+
+.clickable {
+  transform: scale(0.98);
+}
+
+.content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  padding: 1rem;
+  font-weight: 500;
+  letter-spacing: 1.05px;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #0d0d12;
+  border-radius: var(--border-radius);
+  width: calc(100% - var(--border-gap));
+  height: calc(100% - var(--border-gap));
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.gradient {
+  background-color: red;
+  position: absolute;
+  /* top: -100px;
+    right: -100px;
+    left: -100px;
+    bottom: -100px; */
+  inset: -100px;
+
+  background: conic-gradient(
+    from 0deg at var(--gradient-pos-x) var(--gradient-pos-y),
+    #1e87ff,
+    #5c13c4,
+    #ff0033,
+    #ffda00,
+    #64bc26,
+    #1e87ff
+  );
+
+  border-radius: var(--border-radius);
+  animation: rotate 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.button:hover .gradient {
+  animation-play-state: running;
+}
+
+.border,
+.neon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.neon {
+  filter: blur(10px);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
