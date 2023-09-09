@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // ---> Handling the generate new array button 
+    // ---> HANDLING THE GENERATE ARRAY BUTTON
     generateNewArrayBtn.addEventListener('click', () => {
 
         generateNewArrayBtn.classList.add('clickable');
